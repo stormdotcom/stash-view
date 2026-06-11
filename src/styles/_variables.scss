@@ -1,0 +1,19 @@
+// Design tokens — single source of truth for spacing, typography, colors.
+
+$font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, 'Cascadia Mono', 'Fira Code', monospace;
+$font-size-base: 12px;
+$font-size-sm: 11px;
+
+$row-height: 28px;
+$toolbar-height: 36px;
+$divider-width: 4px;
+$border-radius: 3px;
+
+// Syntax palette — One Dark inspired
+$syn-string:  #98c379;
+$syn-number:  #d19a66;
+$syn-bool:    #56b6c2;
+$syn-null:    #e06c75;
+$syn-key:     #e5c07b;
+$syn-brace:   #abb2bf;
+$syn-toggle:  #61afef;

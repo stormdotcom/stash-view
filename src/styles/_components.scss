@@ -1,0 +1,404 @@
+@use 'variables' as v;
+
+// ── Reset & base ──────────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: v.$font-mono;
+  font-size: v.$font-size-base;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar       { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
+
+// ── Toolbar ───────────────────────────────────────────────────────────────────
+.toolbar {
+  display: flex;
+  align-items: center;
+  height: v.$toolbar-height;
+  background: var(--bg-toolbar);
+  border-bottom: 1px solid var(--border);
+  padding: 0 8px;
+  gap: 8px;
+  flex-shrink: 0;
+
+  &__actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+
+  &__search {
+    height: 22px;
+    padding: 0 8px;
+    background: var(--bg-editor);
+    border: 1px solid var(--border);
+    border-radius: v.$border-radius;
+    color: var(--text-primary);
+    font-family: v.$font-mono;
+    font-size: v.$font-size-sm;
+    width: 220px;
+    outline: none;
+
+    &:focus { border-color: var(--text-accent); }
+    &::placeholder { color: var(--text-secondary); }
+  }
+
+  &__btn {
+    height: 22px;
+    padding: 0 8px;
+    background: var(--bg-editor);
+    border: 1px solid var(--border);
+    border-radius: v.$border-radius;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+
+    &:hover { background: var(--bg-row-hover); border-color: var(--text-accent); }
+    &--clear:hover { border-color: var(--text-danger); color: var(--text-danger); }
+  }
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+.tabs {
+  display: flex;
+  gap: 0;
+
+  &__tab {
+    height: v.$toolbar-height;
+    padding: 0 14px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: v.$font-mono;
+    font-size: v.$font-size-sm;
+    letter-spacing: 0.02em;
+
+    &:hover   { color: var(--text-primary); background: var(--bg-row-hover); }
+    &--active { color: var(--text-accent); border-bottom-color: var(--text-accent); }
+  }
+}
+
+// ── Workspace & split ─────────────────────────────────────────────────────────
+.workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - v.$toolbar-height);
+}
+
+.split {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+
+  &__list {
+    width: 40%;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-right: 1px solid var(--border);
+  }
+
+  &__divider {
+    width: v.$divider-width;
+    background: var(--border);
+    cursor: col-resize;
+    flex-shrink: 0;
+
+    &:hover { background: var(--text-accent); }
+  }
+
+  &__detail {
+    flex: 1;
+    overflow: auto;
+    padding: 12px;
+    background: var(--bg-primary);
+  }
+}
+
+// ── Key list ──────────────────────────────────────────────────────────────────
+.key-list {
+  flex: 1;
+  overflow-y: auto;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    height: v.$row-height;
+    padding: 0 8px;
+    gap: 6px;
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    user-select: none;
+
+    &:hover            { background: var(--bg-row-hover); }
+    &--selected        { background: var(--bg-row-sel) !important; }
+    &:focus            { outline: 1px solid var(--text-accent); outline-offset: -1px; }
+    &--db              { font-weight: 600; color: var(--text-accent); }
+  }
+
+  &__key {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-key);
+    font-size: v.$font-size-sm;
+  }
+
+  &__badge {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    color: var(--text-secondary);
+
+    &--object  { background: var(--badge-object); }
+    &--array   { background: var(--badge-array); }
+    &--string  { background: var(--badge-string);  color: var(--text-success); }
+    &--number  { background: var(--badge-number);  color: var(--text-secondary); }
+    &--boolean { background: var(--badge-boolean); color: var(--text-accent); }
+    &--null    { background: var(--badge-null);    color: var(--text-danger); }
+  }
+
+  &__size {
+    font-size: 10px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  &__flags {
+    font-size: 10px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+
+  &__row:hover &__actions,
+  &__row--selected &__actions { opacity: 1; }
+
+  &__btn {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 1px 4px;
+    line-height: 1;
+
+    &:hover          { border-color: var(--border); color: var(--text-primary); }
+    &--danger:hover  { border-color: var(--text-danger); color: var(--text-danger); }
+  }
+
+  &__empty, &__error, &__loading {
+    padding: 16px;
+    color: var(--text-secondary);
+    font-size: v.$font-size-sm;
+    text-align: center;
+  }
+  &__error { color: var(--text-danger); }
+
+  &__icon { flex-shrink: 0; font-size: 14px; }
+}
+
+// ── Detail pane ───────────────────────────────────────────────────────────────
+.detail {
+  &__raw {
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text-primary);
+    font-size: v.$font-size-sm;
+    line-height: 1.6;
+  }
+
+  &__meta {
+    color: var(--text-secondary);
+    font-size: v.$font-size-sm;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  &__heading {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-accent);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  &__note {
+    margin-top: 8px;
+    font-size: v.$font-size-sm;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  &__error { color: var(--text-danger); font-size: v.$font-size-sm; padding: 12px; }
+
+  &__copy-btn {
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    background: var(--bg-editor);
+    border: 1px solid var(--border);
+    border-radius: v.$border-radius;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: v.$font-mono;
+    font-size: v.$font-size-sm;
+
+    &:hover { border-color: var(--text-accent); color: var(--text-accent); }
+  }
+
+  &__label {
+    display: block;
+    font-size: v.$font-size-sm;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    margin-top: 10px;
+  }
+
+  &__input, &__textarea {
+    width: 100%;
+    background: var(--bg-editor);
+    border: 1px solid var(--border);
+    border-radius: v.$border-radius;
+    color: var(--text-primary);
+    font-family: v.$font-mono;
+    font-size: v.$font-size-sm;
+    padding: 6px 8px;
+    outline: none;
+
+    &:focus { border-color: var(--text-accent); }
+
+    &--key { color: var(--text-secondary); cursor: not-allowed; }
+  }
+
+  &__textarea {
+    height: 200px;
+    resize: vertical;
+    white-space: pre;
+    overflow: auto;
+  }
+
+  &__editor-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  &__btn {
+    padding: 4px 14px;
+    border-radius: v.$border-radius;
+    border: 1px solid var(--border);
+    background: var(--bg-editor);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-family: v.$font-mono;
+    font-size: v.$font-size-sm;
+
+    &--save { border-color: var(--text-success); color: var(--text-success); }
+    &--save:hover { background: var(--text-success); color: var(--bg-primary); }
+    &--cancel:hover { border-color: var(--text-danger); color: var(--text-danger); }
+  }
+
+  &__validation {
+    font-size: v.$font-size-sm;
+    &--ok { color: var(--text-success); }
+    &--err { color: var(--text-danger); }
+  }
+}
+
+// ── JSON tree ─────────────────────────────────────────────────────────────────
+.json-tree {
+  font-size: v.$font-size-sm;
+  line-height: 1.7;
+  white-space: pre;
+  overflow: auto;
+
+  &__str    { color: v.$syn-string; }
+  &__num    { color: v.$syn-number; }
+  &__bool   { color: v.$syn-bool; }
+  &__null   { color: v.$syn-null; }
+  &__key    { color: v.$syn-key; }
+  &__brace  { color: v.$syn-brace; }
+  &__colon  { color: v.$syn-brace; }
+  &__toggle { color: v.$syn-toggle; cursor: pointer; user-select: none; margin-right: 2px; }
+  &__block  { margin-left: 16px; display: block; }
+
+  &__copy-btn {
+    opacity: 0;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 11px;
+    padding: 0 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+    transition: opacity 0.1s;
+  }
+
+  &__entry:hover &__copy-btn { opacity: 1; }
+}
+
+// ── IndexedDB store list ──────────────────────────────────────────────────────
+.idb-store-list {
+  list-style: none;
+  padding: 8px 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  &__btn {
+    background: transparent;
+    border: none;
+    color: var(--text-accent);
+    cursor: pointer;
+    font-family: v.$font-mono;
+    font-size: v.$font-size-sm;
+    text-decoration: underline;
+    padding: 0;
+
+    &:hover { color: var(--text-primary); }
+  }
+
+  &__meta {
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+}
+
+// ── Tab panels ────────────────────────────────────────────────────────────────
+.tab-panel { display: none; }
+.tab-panel--active { display: block; }

@@ -1,0 +1,62 @@
+// Theme variables for dark (default) and light modes.
+// Applied via [data-theme="dark"] / [data-theme="light"] on <body>.
+
+:root, [data-theme="dark"] {
+  --bg-primary:    #1e2127;
+  --bg-secondary:  #21252b;
+  --bg-row:        #282c34;
+  --bg-row-hover:  #2c313a;
+  --bg-row-sel:    #3e4451;
+  --bg-toolbar:    #21252b;
+  --bg-editor:     #1e2127;
+
+  --border:        #3e4451;
+  --border-subtle: #2c313a;
+
+  --text-primary:  #abb2bf;
+  --text-secondary:#6b7280;
+  --text-key:      #e5c07b;
+  --text-danger:   #e06c75;
+  --text-success:  #98c379;
+  --text-accent:   #61afef;
+
+  --badge-object:  #3a3f4b;
+  --badge-array:   #3a3f4b;
+  --badge-string:  #2d3b2d;
+  --badge-number:  #3b3020;
+  --badge-boolean: #1e3030;
+  --badge-null:    #3b1e1e;
+
+  --scrollbar-thumb: #3e4451;
+  --scrollbar-track: #21252b;
+}
+
+[data-theme="light"] {
+  --bg-primary:    #f8f8f8;
+  --bg-secondary:  #f0f0f0;
+  --bg-row:        #ffffff;
+  --bg-row-hover:  #f5f5f5;
+  --bg-row-sel:    #ddeeff;
+  --bg-toolbar:    #f0f0f0;
+  --bg-editor:     #fafafa;
+
+  --border:        #d1d5db;
+  --border-subtle: #e5e7eb;
+
+  --text-primary:  #24292e;
+  --text-secondary:#586069;
+  --text-key:      #6f42c1;
+  --text-danger:   #d73a49;
+  --text-success:  #22863a;
+  --text-accent:   #0366d6;
+
+  --badge-object:  #e8e8e8;
+  --badge-array:   #e8e8e8;
+  --badge-string:  #e6f4ea;
+  --badge-number:  #fff3cd;
+  --badge-boolean: #e3f2fd;
+  --badge-null:    #fce8e8;
+
+  --scrollbar-thumb: #c1c7cd;
+  --scrollbar-track: #f0f0f0;
+}
