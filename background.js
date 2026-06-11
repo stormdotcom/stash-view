@@ -3,20 +3,22 @@
 // (e.g. chrome.cookies read/write/delete, cross-origin scripting).
 // Stays intentionally minimal — all UI logic lives in panel.js.
 
-import './src/js/lib/browser-polyfill.js';
+// Use chrome.* directly — polyfill is loaded via manifest scripts[] on Firefox.
+// On Chrome MV3, chrome.* APIs return Promises natively.
+const _b = (typeof browser !== 'undefined') ? browser : chrome;
 
-browser.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+_b.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   switch (message.type) {
     case 'cookies:getAll':
-      browser.cookies.getAll({ url: message.url }).then(sendResponse);
+      _b.cookies.getAll({ url: message.url }).then(sendResponse);
       return true; // async
 
     case 'cookies:set':
-      browser.cookies.set(message.details).then(sendResponse).catch(err => sendResponse({ error: err.message }));
+      _b.cookies.set(message.details).then(sendResponse).catch(err => sendResponse({ error: err.message }));
       return true;
 
     case 'cookies:remove':
-      browser.cookies.remove({ url: message.url, name: message.name }).then(sendResponse);
+      _b.cookies.remove({ url: message.url, name: message.name }).then(sendResponse);
       return true;
 
     default:

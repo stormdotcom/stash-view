@@ -39,8 +39,12 @@ export class CookiesTab {
   }
 
   _getTabUrl() {
-    return new Promise(resolve => {
-      chrome.tabs.get(chrome.devtools.inspectedWindow.tabId, tab => resolve(tab.url));
+    // Avoids needing the `tabs` permission; reads href from the page context instead.
+    return new Promise((resolve, reject) => {
+      chrome.devtools.inspectedWindow.eval('window.location.href', (result, err) => {
+        if (err) reject(new Error(err.value ?? 'Could not get page URL'));
+        else resolve(result);
+      });
     });
   }
 

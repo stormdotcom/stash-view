@@ -11,3 +11,5 @@ src/styles/styles.css
 .vscode/
 !.vscode/settings.json
 !.vscode/extensions.json
+.claude
+.claude*
