@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "StashView",
+  "version": "0.1.0",
+  "description": "Developer-focused storage inspector: localStorage, sessionStorage, cookies, and IndexedDB — right in DevTools.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "devtools_page": "devtools.html",
+  "permissions": [
+    "storage",
+    "cookies",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "_permission_notes": {
+    "storage": "Required to persist user preferences (theme, split position) locally in the extension.",
+    "cookies": "Required to read/write/delete cookies for the inspected page via chrome.cookies API.",
+    "activeTab": "Required to identify the inspected tab's URL/origin for scoping cookie reads.",
+    "scripting": "Required to inject content scripts into the inspected page to read/write localStorage, sessionStorage, and IndexedDB, which are only accessible in the page's own origin context.",
+    "host_permissions <all_urls>": "Required because DevTools can open on any origin the developer is working on; the extension must be able to inject scripts and read cookies for arbitrary origins."
+  }
+}

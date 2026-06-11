@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>StashView</title>
+  <link rel="stylesheet" href="src/styles/styles.css">
+</head>
+<body class="theme--dark" data-theme="dark">
+
+  <div class="toolbar">
+    <nav class="tabs" role="tablist" aria-label="Storage type">
+      <button class="tabs__tab tabs__tab--active" role="tab" data-tab="local"    aria-selected="true"  tabindex="0">Local</button>
+      <button class="tabs__tab"                   role="tab" data-tab="session"  aria-selected="false" tabindex="-1">Session</button>
+      <button class="tabs__tab"                   role="tab" data-tab="cookies"  aria-selected="false" tabindex="-1">Cookies</button>
+      <button class="tabs__tab"                   role="tab" data-tab="indexeddb" aria-selected="false" tabindex="-1">IndexedDB</button>
+    </nav>
+    <div class="toolbar__actions">
+      <input class="toolbar__search" type="search" placeholder="/ filter keys…" aria-label="Filter keys">
+      <button class="toolbar__btn toolbar__btn--refresh" title="Refresh (R)" aria-label="Refresh">↺</button>
+      <button class="toolbar__btn toolbar__btn--clear" title="Clear all" aria-label="Clear all">⌫</button>
+    </div>
+  </div>
+
+  <main class="workspace">
+    <div class="split" id="split">
+      <div class="split__list" id="key-list-pane">
+        <!-- Key list rendered by active tab module -->
+        <div class="key-list" id="key-list" role="grid" aria-label="Keys" tabindex="0"></div>
+      </div>
+      <div class="split__divider" id="split-divider" role="separator" aria-orientation="vertical" tabindex="0" aria-label="Resize"></div>
+      <div class="split__detail" id="detail-pane">
+        <!-- Value detail rendered by active tab module -->
+        <div class="detail" id="detail"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Tab content panels (only active one is shown) -->
+  <div id="tab-local"     class="tab-panel tab-panel--active"  data-panel="local"></div>
+  <div id="tab-session"   class="tab-panel"                    data-panel="session"></div>
+  <div id="tab-cookies"   class="tab-panel"                    data-panel="cookies"></div>
+  <div id="tab-indexeddb" class="tab-panel"                    data-panel="indexeddb"></div>
+
+  <script src="src/js/lib/browser-polyfill.js"></script>
+  <script type="module" src="src/js/panel.js"></script>
+</body>
+</html>

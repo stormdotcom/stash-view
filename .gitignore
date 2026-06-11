@@ -1,0 +1,13 @@
+node_modules/
+dist/
+release/
+*.zip
+*.css.map
+src/styles/styles.css
+.DS_Store
+.env*
+*.log
+.idea/
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
