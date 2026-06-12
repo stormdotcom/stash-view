@@ -17,22 +17,44 @@ const statusEl   = document.getElementById('status');
 const searchEl   = document.getElementById('search');
 const btnRefresh = document.getElementById('btn-refresh');
 const btnClear   = document.getElementById('btn-clear');
+const btnTheme   = document.getElementById('btn-theme');
 
 let activeTabName = 'local';
-let allRows       = [];   // current data array for filter
+let allRows       = [];
 let tabInfo       = null;
 let activeRowEl   = null;
 
+// ── Theme ─────────────────────────────────────────────────────────────────────
+async function applyTheme(theme) {
+  document.body.dataset.theme = theme;
+  await chrome.storage.local.set({ theme });
+}
+
+btnTheme.addEventListener('click', () => {
+  applyTheme(document.body.dataset.theme === 'dark' ? 'light' : 'dark');
+});
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 (async () => {
+  // Restore saved theme (default: dark)
+  const { theme = 'dark' } = await chrome.storage.local.get('theme');
+  document.body.dataset.theme = theme;
+
+  // Populate header site row
   try {
     tabInfo = await getActiveTabInfo();
     const url = new URL(tabInfo.url);
     originEl.textContent = url.hostname;
     originEl.title       = tabInfo.url;
-    if (tabInfo.favIconUrl) { faviconEl.src = tabInfo.favIconUrl; faviconEl.style.display = ''; }
-    else faviconEl.style.display = 'none';
-  } catch { originEl.textContent = 'unknown'; }
+    if (tabInfo.favIconUrl) {
+      faviconEl.src = tabInfo.favIconUrl;
+      faviconEl.style.display = '';
+    } else {
+      faviconEl.style.display = 'none';
+    }
+  } catch {
+    originEl.textContent = 'unknown origin';
+  }
 
   await loadTab('local');
 })();
