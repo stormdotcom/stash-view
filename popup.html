@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>StashView</title>
+  <link rel="stylesheet" href="src/styles/popup.css">
+</head>
+<body class="theme--dark" data-theme="dark">
+
+  <!-- Header: extension name + inspected page origin -->
+  <header class="pu-header">
+    <img class="pu-header__favicon" id="favicon" src="" alt="" width="16" height="16">
+    <span class="pu-header__title">StashView</span>
+    <span class="pu-header__dot"></span>
+    <span class="pu-header__origin" id="origin" title=""></span>
+    <button class="pu-header__refresh" id="btn-refresh" title="Refresh (R)">↺</button>
+  </header>
+
+  <!-- Tab bar -->
+  <nav class="pu-tabs" role="tablist">
+    <button class="pu-tabs__tab pu-tabs__tab--active" data-tab="local"     role="tab" aria-selected="true">Local</button>
+    <button class="pu-tabs__tab"                      data-tab="session"   role="tab" aria-selected="false">Session</button>
+    <button class="pu-tabs__tab"                      data-tab="cookies"   role="tab" aria-selected="false">Cookies</button>
+    <button class="pu-tabs__tab"                      data-tab="indexeddb" role="tab" aria-selected="false">IDB</button>
+  </nav>
+
+  <!-- Search row -->
+  <div class="pu-search-row">
+    <input class="pu-search" id="search" type="search" placeholder="filter keys…" autocomplete="off" spellcheck="false">
+    <button class="pu-search-row__clear" id="btn-clear" title="Clear all in this tab">Clear all</button>
+  </div>
+
+  <!-- Column headers -->
+  <div class="pu-col-head">
+    <span class="pu-col-head__key">Key</span>
+    <span class="pu-col-head__type">Type</span>
+    <span class="pu-col-head__size">Size</span>
+    <span class="pu-col-head__acts"></span>
+  </div>
+
+  <!-- Key list -->
+  <div class="pu-list" id="list" role="grid"></div>
+
+  <!-- Expanded value viewer -->
+  <div class="pu-detail" id="detail" hidden></div>
+
+  <!-- Status / error bar -->
+  <div class="pu-status" id="status" hidden></div>
+
+  <script src="src/js/lib/browser-polyfill.js"></script>
+  <script type="module" src="src/js/popup.js"></script>
+</body>
+</html>
