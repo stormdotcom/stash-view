@@ -99,7 +99,7 @@
         <tbody>
           <tr>
             <td><code>storage</code></td>
-            <td>Persists your theme preference (dark / light) in the extension's local storage. No browsing data.</td>
+            <td>Persists your UI preferences (dark / light theme and last-active storage tab) in the extension's local storage. No browsing data is ever written here.</td>
           </tr>
           <tr>
             <td><code>cookies</code></td>
@@ -107,7 +107,7 @@
           </tr>
           <tr>
             <td><code>activeTab</code></td>
-            <td>Grants temporary access to the currently active tab when you click the extension icon. Used to identify the tab's URL for scoping cookie reads.</td>
+            <td>Grants temporary access to the currently active tab only when you click the extension icon — no background access. Used to identify the tab's URL for scoping storage and cookie reads.</td>
           </tr>
           <tr>
             <td><code>scripting</code></td>

@@ -1,6 +1,7 @@
 node_modules/
 dist/
 release/
+releases/
 *.zip
 *.css.map
 src/styles/styles.css
