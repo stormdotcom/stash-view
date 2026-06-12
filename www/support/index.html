@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — StashView</title>
+  <meta name="description" content="Get help with StashView. Browse FAQs, report bugs on GitHub, or reach out to the developer.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/icon32.png">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="/">
+      <img class="nav__logo nav__logo--dark"  src="../../icons/icon32.png"       alt="StashView">
+      <img class="nav__logo nav__logo--light" src="../../icons/icon32-light.png" alt="StashView">
+      <span class="nav__name">StashView</span>
+    </a>
+    <div class="nav__links">
+      <a class="nav__link" href="/">Home</a>
+      <a class="nav__link" href="../privacy/">Privacy</a>
+      <a class="nav__link hide-sm" href="https://github.com/stormdotcom" target="_blank" rel="noopener">GitHub</a>
+      <button class="btn btn--icon" id="theme-toggle" aria-label="Toggle theme">
+        <span class="ti-dark">☀</span>
+        <span class="ti-light" style="display:none">☾</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────────── -->
+<section class="section" style="padding-bottom: 40px">
+  <div class="container">
+    <p class="section__label">Help &amp; Support</p>
+    <h1 class="section__title">How can we help?</h1>
+    <p class="section__sub">
+      Find answers below, open a GitHub issue, or reach the developer directly.
+      StashView is open source — contributions and feedback are always welcome.
+    </p>
+  </div>
+</section>
+
+<!-- ── Contact cards ─────────────────────────────────────────── -->
+<section class="section" style="padding-top:0; border-top:none">
+  <div class="container">
+    <div class="contact-grid">
+
+      <a class="contact-card" href="https://github.com/stormdotcom" target="_blank" rel="noopener">
+        <div class="contact-card__icon">🐙</div>
+        <div class="contact-card__title">GitHub — Source &amp; Issues</div>
+        <div class="contact-card__url">github.com/stormdotcom</div>
+        <p class="contact-card__desc">
+          Report bugs, request features, or browse the full source code.
+          The fastest way to get a fix.
+        </p>
+      </a>
+
+      <a class="contact-card" href="https://ajmalnasumudeen.in" target="_blank" rel="noopener">
+        <div class="contact-card__icon">🌐</div>
+        <div class="contact-card__title">Developer Portfolio</div>
+        <div class="contact-card__url">ajmalnasumudeen.in</div>
+        <p class="contact-card__desc">
+          Learn more about the developer, see other projects, or send a
+          direct message via the contact form.
+        </p>
+      </a>
+
+      <a class="contact-card" href="https://github.com/stormdotcom" target="_blank" rel="noopener">
+        <div class="contact-card__icon">⭐</div>
+        <div class="contact-card__title">Star on GitHub</div>
+        <div class="contact-card__url">github.com/stormdotcom</div>
+        <p class="contact-card__desc">
+          If StashView saved you time, a GitHub star helps others discover it
+          and keeps the project motivated.
+        </p>
+      </a>
+
+      <a class="contact-card" href="../privacy/">
+        <div class="contact-card__icon">🔒</div>
+        <div class="contact-card__title">Privacy Policy</div>
+        <div class="contact-card__url">stashview/privacy</div>
+        <p class="contact-card__desc">
+          Zero telemetry, no data collection. Read the full privacy policy
+          and permission justifications.
+        </p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <p class="section__label">FAQ</p>
+    <h2 class="section__title">Frequently asked questions</h2>
+
+    <div class="faq">
+
+      <details class="faq-item">
+        <summary>Why can't I see localStorage / sessionStorage values?</summary>
+        <div class="faq-item__body">
+          StashView injects a script into the active tab to read storage.
+          This requires the page to be a regular HTTP/HTTPS page — it will
+          not work on <code>chrome://</code>, <code>chrome-extension://</code>,
+          or the Chrome Web Store (<code>chromewebstore.google.com</code>) due
+          to browser security restrictions. Try it on any normal website.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why is a cookie greyed out and not editable?</summary>
+        <div class="faq-item__body">
+          Cookies flagged as <strong>HttpOnly</strong> cannot be read or written
+          by JavaScript — this is an intentional browser security feature.
+          StashView shows these cookies but correctly disables editing to
+          respect the flag. This behaviour cannot be overridden.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>I don't see any IndexedDB databases. Why?</summary>
+        <div class="faq-item__body">
+          <code>indexedDB.databases()</code> is the API used to list databases.
+          Some older browser versions don't support it. Also, databases created
+          in incognito windows are not accessible from a regular popup. Make
+          sure you're on a standard tab and that the site actually uses
+          IndexedDB.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Does StashView work in Incognito mode?</summary>
+        <div class="faq-item__body">
+          By default Chrome extensions do not run in Incognito. You can
+          enable it manually: go to <code>chrome://extensions</code>, find
+          StashView, click <em>Details</em>, and enable
+          <em>Allow in Incognito</em>. Note that storage in Incognito is
+          isolated and cleared when the window closes.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Does StashView send any of my data anywhere?</summary>
+        <div class="faq-item__body">
+          No. StashView contains zero network calls. There are no analytics,
+          no telemetry, no CDN resources, no remote servers of any kind.
+          Everything runs locally inside your browser. The full source is
+          on <a href="https://github.com/stormdotcom" target="_blank" rel="noopener">GitHub</a>
+          so you can verify this yourself.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I report a bug or request a feature?</summary>
+        <div class="faq-item__body">
+          Open an issue on GitHub at
+          <a href="https://github.com/stormdotcom" target="_blank" rel="noopener">github.com/stormdotcom</a>.
+          Please include the Chrome version, the website URL (if reproducible),
+          and a description of what you expected vs. what happened.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is StashView available for Firefox?</summary>
+        <div class="faq-item__body">
+          A Firefox build is included in the source repository and the build
+          script generates a <code>stashview-firefox-v*.zip</code> file.
+          Firefox AMO submission is planned. In the meantime you can load it
+          as a temporary add-on via <code>about:debugging</code>.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I rebuild from source?</summary>
+        <div class="faq-item__body">
+          Clone the repository, install the <code>sass</code> CLI
+          (<code>npm i -g sass</code>), then run:
+          <br><br>
+          <code>python build.py --target chrome</code>
+          <br><br>
+          Load the <code>dist/chrome/</code> folder as an unpacked extension
+          via <code>chrome://extensions</code> with Developer Mode on.
+          Full instructions are in the README.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── About developer ───────────────────────────────────────── -->
+<section class="section">
+  <div class="container" style="max-width:640px">
+    <p class="section__label">About</p>
+    <h2 class="section__title">Made by a developer, for developers</h2>
+    <p style="color:var(--text-dim); line-height:1.8; margin-top:16px">
+      StashView was built by <strong>Ajmal Nasumudeen</strong> — a software
+      developer who got tired of digging through the DevTools Application
+      panel every time he needed to check a token or clear a stale cache entry.
+      The goal was a zero-friction, privacy-respecting tool that respects your
+      workflow.
+    </p>
+    <div style="display:flex; gap:12px; margin-top:24px; flex-wrap:wrap">
+      <a class="btn btn--ghost" href="https://github.com/stormdotcom" target="_blank" rel="noopener">
+        🐙 &nbsp;github.com/stormdotcom
+      </a>
+      <a class="btn btn--ghost" href="https://ajmalnasumudeen.in" target="_blank" rel="noopener">
+        🌐 &nbsp;ajmalnasumudeen.in
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img class="footer__logo" src="../../icons/icon32.png" alt="">
+      StashView
+    </div>
+    <div class="footer__links">
+      <a href="/">Home</a>
+      <a href="../privacy/">Privacy</a>
+      <a href="https://github.com/stormdotcom" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://ajmalnasumudeen.in" target="_blank" rel="noopener">Portfolio</a>
+    </div>
+    <span>Built by <a href="https://ajmalnasumudeen.in" target="_blank" rel="noopener">Ajmal Nasumudeen</a></span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const dark  = toggle.querySelector('.ti-dark');
+  const light = toggle.querySelector('.ti-light');
+  let theme = localStorage.getItem('sv-theme') || 'dark';
+  function apply(t) {
+    document.documentElement.dataset.theme = t;
+    dark.style.display  = t === 'dark'  ? 'inline' : 'none';
+    light.style.display = t === 'light' ? 'inline' : 'none';
+    localStorage.setItem('sv-theme', t);
+    theme = t;
+  }
+  apply(theme);
+  toggle.addEventListener('click', () => apply(theme === 'dark' ? 'light' : 'dark'));
+</script>
+
+</body>
+</html>

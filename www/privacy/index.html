@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — StashView</title>
+  <meta name="description" content="StashView Privacy Policy. No data collection. No telemetry. Everything stays on your device.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/icon32.png">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="/">
+      <img class="nav__logo nav__logo--dark"  src="../../icons/icon32.png"       alt="StashView">
+      <img class="nav__logo nav__logo--light" src="../../icons/icon32-light.png" alt="StashView">
+      <span class="nav__name">StashView</span>
+    </a>
+    <div class="nav__links">
+      <a class="nav__link" href="/">Home</a>
+      <a class="nav__link" href="../support/">Support</a>
+      <a class="nav__link hide-sm" href="https://github.com/stormdotcom" target="_blank" rel="noopener">GitHub</a>
+      <button class="btn btn--icon" id="theme-toggle" aria-label="Toggle theme">
+        <span class="ti-dark">☀</span>
+        <span class="ti-light" style="display:none">☾</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main class="section">
+  <div class="container">
+    <div class="prose">
+
+      <p class="section__label">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="last-updated">Last updated: June 12, 2026 · Extension v1.0.1</p>
+
+      <p>
+        StashView is a Chrome extension that helps developers inspect browser
+        storage. This policy explains what data the extension accesses, how it
+        is used, and what leaves your device (spoiler: nothing).
+      </p>
+
+      <h2>1. Data we collect</h2>
+      <p>
+        <strong>We collect no data whatsoever.</strong> StashView does not
+        transmit, log, store remotely, or share any information from your
+        browser or your activity. There are no analytics events, no error
+        reporting endpoints, no telemetry pings.
+      </p>
+
+      <h2>2. Data accessed locally</h2>
+      <p>
+        To function, StashView reads the following from the currently active
+        tab <em>within your browser only</em>:
+      </p>
+      <ul>
+        <li>
+          <strong>localStorage &amp; sessionStorage</strong> — read and written
+          only on explicit user action (viewing, editing, or deleting an entry).
+          Accessed by injecting a script into the page via the
+          <code>scripting</code> permission; the data never leaves the browser.
+        </li>
+        <li>
+          <strong>Cookies</strong> — read via <code>chrome.cookies.getAll()</code>
+          scoped to the current tab's URL. Cookie values are displayed in the
+          popup only. HttpOnly cookies are displayed but cannot be edited
+          (enforced by the browser).
+        </li>
+        <li>
+          <strong>IndexedDB records</strong> — read on demand when you navigate
+          to a database and object store in the popup. Data is displayed locally
+          and discarded when the popup closes.
+        </li>
+        <li>
+          <strong>Tab URL and favicon</strong> — used to display the inspected
+          site's hostname and icon in the popup header. Not stored or transmitted.
+        </li>
+      </ul>
+
+      <h2>3. Permissions explained</h2>
+      <p>
+        The Chrome Web Store requires every permission to be justified. Here is
+        the exact reason each one is requested:
+      </p>
+
+      <table class="perm-table">
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Why it's needed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>storage</code></td>
+            <td>Persists your theme preference (dark / light) in the extension's local storage. No browsing data.</td>
+          </tr>
+          <tr>
+            <td><code>cookies</code></td>
+            <td>Reads, writes, and deletes cookies for the inspected page via <code>chrome.cookies</code>. Required to show cookie flags (HttpOnly, Secure, SameSite).</td>
+          </tr>
+          <tr>
+            <td><code>activeTab</code></td>
+            <td>Grants temporary access to the currently active tab when you click the extension icon. Used to identify the tab's URL for scoping cookie reads.</td>
+          </tr>
+          <tr>
+            <td><code>scripting</code></td>
+            <td>Injects a minimal JavaScript function into the inspected page to read or write localStorage, sessionStorage, and IndexedDB — these APIs are only accessible from the page's own origin context.</td>
+          </tr>
+          <tr>
+            <td><code>tabs</code></td>
+            <td>Used to query the active tab's URL and favicon URL for display in the popup header.</td>
+          </tr>
+          <tr>
+            <td><code>host_permissions: &lt;all_urls&gt;</code></td>
+            <td>Developers inspect storage on any website, so the extension must be able to operate on arbitrary origins. Without this, cookie reads and script injection would be blocked on most sites.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>4. No third-party services</h2>
+      <p>
+        StashView includes no third-party SDKs, analytics libraries, crash
+        reporters, CDN resources, or remote fonts. All JavaScript and CSS is
+        bundled locally within the extension package. There are <strong>zero
+        outbound network requests</strong> from the extension itself.
+      </p>
+
+      <h2>5. Open source</h2>
+      <p>
+        The complete source code is publicly available on GitHub. You are
+        welcome to audit every line:
+        <a href="https://github.com/stormdotcom" target="_blank" rel="noopener">github.com/stormdotcom</a>
+      </p>
+
+      <h2>6. Children's privacy</h2>
+      <p>
+        StashView is a developer tool not directed at children. We do not
+        knowingly collect any information from anyone under 13.
+      </p>
+
+      <h2>7. Changes to this policy</h2>
+      <p>
+        If the extension's data practices change in any meaningful way this
+        policy will be updated and a new "last updated" date will be set. The
+        current version is always published at this URL.
+      </p>
+
+      <h2>8. Contact</h2>
+      <p>
+        Questions about this policy? Reach out via the
+        <a href="../support/">support page</a> or open an issue on
+        <a href="https://github.com/stormdotcom" target="_blank" rel="noopener">GitHub</a>.
+      </p>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img class="footer__logo" src="../../icons/icon32.png" alt="">
+      StashView
+    </div>
+    <div class="footer__links">
+      <a href="/">Home</a>
+      <a href="../support/">Support</a>
+      <a href="https://github.com/stormdotcom" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://ajmalnasumudeen.in" target="_blank" rel="noopener">Portfolio</a>
+    </div>
+    <span>Built by <a href="https://ajmalnasumudeen.in" target="_blank" rel="noopener">Ajmal Nasumudeen</a></span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const dark  = toggle.querySelector('.ti-dark');
+  const light = toggle.querySelector('.ti-light');
+  let theme = localStorage.getItem('sv-theme') || 'dark';
+  function apply(t) {
+    document.documentElement.dataset.theme = t;
+    dark.style.display  = t === 'dark'  ? 'inline' : 'none';
+    light.style.display = t === 'light' ? 'inline' : 'none';
+    localStorage.setItem('sv-theme', t);
+    theme = t;
+  }
+  apply(theme);
+  toggle.addEventListener('click', () => apply(theme === 'dark' ? 'light' : 'dark'));
+</script>
+
+</body>
+</html>

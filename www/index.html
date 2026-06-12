@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StashView — Developer Storage Inspector for Chrome</title>
+  <meta name="description" content="Inspect, edit and delete localStorage, sessionStorage, cookies and IndexedDB right from your Chrome toolbar. Zero telemetry. 100% local.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/icon32.png">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="/">
+      <img class="nav__logo nav__logo--dark"  src="../icons/icon32.png"       alt="StashView">
+      <img class="nav__logo nav__logo--light" src="../icons/icon32-light.png" alt="StashView">
+      <span class="nav__name">StashView</span>
+    </a>
+    <div class="nav__links">
+      <a class="nav__link hide-sm" href="#features">Features</a>
+      <a class="nav__link hide-sm" href="#privacy">Privacy</a>
+      <a class="nav__link hide-sm" href="support/">Support</a>
+      <a class="nav__link hide-sm" href="https://github.com/stormdotcom" target="_blank" rel="noopener">GitHub</a>
+      <button class="btn btn--icon" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+        <span class="ti-dark">☀</span>
+        <span class="ti-light" style="display:none">☾</span>
+      </button>
+      <a class="btn btn--primary" href="https://chrome.google.com/webstore" target="_blank" rel="noopener">
+        Add to Chrome
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__eyebrow">
+      <span class="hero__eyebrow-dot"></span>
+      Chrome Extension · Manifest V3 · v1.0.1
+    </div>
+
+    <img class="hero__icon hero__icon--dark"  src="../icons/icon128.png"       alt="">
+    <img class="hero__icon hero__icon--light" src="../icons/icon128-light.png" alt="">
+
+    <h1 class="hero__title">
+      Your browser storage,<br>
+      <span>fully in view.</span>
+    </h1>
+    <p class="hero__sub">
+      StashView puts localStorage, sessionStorage, cookies and IndexedDB
+      inspection right in your Chrome toolbar — no DevTools required.
+      Built for developers who want answers fast.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="https://chrome.google.com/webstore" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        Add to Chrome — it's free
+      </a>
+      <a class="btn btn--ghost" href="https://github.com/stormdotcom" target="_blank" rel="noopener">
+        View source on GitHub
+      </a>
+    </div>
+    <div class="hero__badges">
+      <span class="badge badge--green">✓ Zero telemetry</span>
+      <span class="badge badge--green">✓ No network requests</span>
+      <span class="badge badge--blue">↻ Works offline</span>
+      <span class="badge">Manifest V3</span>
+      <span class="badge">Open source</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ─────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <p class="section__label">What's inside</p>
+    <h2 class="section__title">Every storage type, one click away</h2>
+    <p class="section__sub">
+      No more opening DevTools, navigating Application panels, and waiting for
+      the tree to load. StashView surfaces everything instantly.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-card__icon">📦</div>
+        <div class="feature-card__title">localStorage</div>
+        <p class="feature-card__desc">
+          List, search, view, edit and delete entries. JSON values auto-expand
+          into a collapsible syntax-highlighted tree.
+        </p>
+        <span class="feature-card__tag">persistent</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card__icon">⚡</div>
+        <div class="feature-card__title">sessionStorage</div>
+        <p class="feature-card__desc">
+          Same full editing experience as localStorage, scoped to the current
+          browser tab session.
+        </p>
+        <span class="feature-card__tag">tab-scoped</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card__icon">🍪</div>
+        <div class="feature-card__title">Cookies</div>
+        <p class="feature-card__desc">
+          Inspect all cookie flags — HttpOnly, Secure, SameSite, domain, path,
+          expiry. Edit non-HttpOnly cookies inline.
+        </p>
+        <span class="feature-card__tag">flags visible</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-card__icon">🗄</div>
+        <div class="feature-card__title">IndexedDB</div>
+        <p class="feature-card__desc">
+          Browse databases → object stores → records in a drill-down tree.
+          View and delete individual records.
+        </p>
+        <span class="feature-card__tag">structured data</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── JSON ──────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <p class="section__label">JSON first</p>
+    <h2 class="section__title">Smart value handling</h2>
+    <p class="section__sub">
+      StashView auto-detects JSON and renders it as an interactive tree with
+      One Dark syntax highlighting — strings, numbers, booleans, nulls all
+      colour-coded. Toggle between tree and raw views. Copy any nested value
+      to clipboard in one click.
+    </p>
+    <div style="margin-top:32px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span class="badge badge--blue">Auto-detect JSON</span>
+      <span class="badge" style="color:var(--success)">Collapsible tree</span>
+      <span class="badge" style="color:var(--warning)">Syntax highlighting</span>
+      <span class="badge" style="color:var(--purple)">Raw / parsed toggle</span>
+      <span class="badge" style="color:var(--orange)">Copy nested values</span>
+      <span class="badge" style="color:var(--danger)">Inline editing with validation</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ──────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <p class="section__label">Getting started</p>
+    <h2 class="section__title">Up and running in seconds</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">1</div>
+        <div class="step__title">Install from Chrome Web Store</div>
+        <p class="step__desc">Click "Add to Chrome". No signup, no account — just the extension.</p>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <div class="step__title">Click the toolbar icon</div>
+        <p class="step__desc">
+          Navigate to any website and click the StashView icon in your Chrome
+          toolbar. The popup opens instantly.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <div class="step__title">Inspect &amp; edit</div>
+        <p class="step__desc">
+          Browse storage tabs, click a key to expand its value, edit or delete
+          entries, and filter by key name.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Privacy callout ───────────────────────────────────────── -->
+<section class="section" id="privacy">
+  <div class="container">
+    <div class="privacy-callout">
+      <div class="privacy-callout__icon">🔒</div>
+      <div>
+        <h3 class="privacy-callout__title">Your data never leaves your machine</h3>
+        <p class="privacy-callout__body">
+          StashView reads storage data from the current tab and displays it
+          locally in the popup. There are <strong>no external network
+          requests</strong>, no analytics, no crash reporting, no CDN scripts —
+          nothing leaves your browser. Ever.
+        </p>
+        <div class="privacy-callout__pills">
+          <span class="badge badge--green">No tracking</span>
+          <span class="badge badge--green">No analytics</span>
+          <span class="badge badge--green">No remote servers</span>
+          <span class="badge badge--green">Open source — verify yourself</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:16px; font-size:13px; color:var(--text-dimmer)">
+      Read the full <a href="privacy/">Privacy Policy</a> for details on permissions used.
+    </p>
+  </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img class="footer__logo" src="../icons/icon32.png" alt="">
+      StashView
+    </div>
+    <div class="footer__links">
+      <a href="privacy/">Privacy Policy</a>
+      <a href="support/">Support</a>
+      <a href="https://github.com/stormdotcom" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://ajmalnasumudeen.in" target="_blank" rel="noopener">Portfolio</a>
+    </div>
+    <span>Built by <a href="https://ajmalnasumudeen.in" target="_blank" rel="noopener">Ajmal Nasumudeen</a></span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const dark  = toggle.querySelector('.ti-dark');
+  const light = toggle.querySelector('.ti-light');
+  let theme = localStorage.getItem('sv-theme') || 'dark';
+
+  function apply(t) {
+    document.documentElement.dataset.theme = t;
+    dark.style.display  = t === 'dark'  ? 'inline' : 'none';
+    light.style.display = t === 'light' ? 'inline' : 'none';
+    localStorage.setItem('sv-theme', t);
+    theme = t;
+  }
+  apply(theme);
+  toggle.addEventListener('click', () => apply(theme === 'dark' ? 'light' : 'dark'));
+</script>
+
+</body>
+</html>
