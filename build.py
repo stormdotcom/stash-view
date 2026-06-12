@@ -77,6 +77,10 @@ COPY_FILES = [
     'icons/icon32.png',
     'icons/icon48.png',
     'icons/icon128.png',
+    'icons/icon16-light.png',
+    'icons/icon32-light.png',
+    'icons/icon48-light.png',
+    'icons/icon128-light.png',
 ]
 
 

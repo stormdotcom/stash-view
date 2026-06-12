@@ -130,6 +130,12 @@ body {
     border-radius: 5px;
     flex-shrink: 0;
     filter: drop-shadow(var(--pp-logo-shadow));
+
+    &--dark  { display: block; }
+    &--light { display: none;  }
+
+    [data-theme="light"] &--dark  { display: none;  }
+    [data-theme="light"] &--light { display: block; }
   }
 
   &__name {
