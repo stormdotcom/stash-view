@@ -46,22 +46,31 @@ SRC_CSS = ROOT / 'src' / 'styles'
 DIST    = ROOT / 'dist'
 RELEASE = ROOT / 'release'
 
-SCSS_ENTRY  = SRC_CSS / 'main.scss'
-CSS_OUT     = ROOT / 'src' / 'styles' / 'styles.css'
+SCSS_ENTRIES = [
+    (SRC_CSS / 'main.scss',  ROOT / 'src' / 'styles' / 'styles.css'),
+    (SRC_CSS / 'popup.scss', ROOT / 'src' / 'styles' / 'popup.css'),
+]
+# Keep single alias for watch mtime scanning
+SCSS_ENTRY = SRC_CSS / 'main.scss'
+CSS_OUT    = ROOT / 'src' / 'styles' / 'styles.css'
 
 COPY_FILES = [
     'panel.html',
+    'popup.html',
     'devtools.html',
     'devtools.js',
     'background.js',
     'src/styles/styles.css',
+    'src/styles/popup.css',
     'src/js/panel.js',
+    'src/js/popup.js',
     'src/js/tabs/local.js',
     'src/js/tabs/session.js',
     'src/js/tabs/cookies.js',
     'src/js/tabs/indexeddb.js',
     'src/js/components/json-tree.js',
     'src/js/lib/inspected-page.js',
+    'src/js/lib/active-tab.js',
     'src/js/lib/format.js',
     'src/js/lib/browser-polyfill.js',
     'icons/icon16.png',
@@ -72,14 +81,14 @@ COPY_FILES = [
 
 
 def compile_scss():
-    # shell=True is required on Windows where `sass` is a .cmd shim.
-    result = subprocess.run(
-        f'sass "{SCSS_ENTRY}" "{CSS_OUT}" --no-source-map --style=compressed',
-        capture_output=True, text=True, shell=True
-    )
-    if result.returncode != 0:
-        print(f'SCSS error:\n{result.stderr}', file=sys.stderr)
-        return False
+    for entry, out in SCSS_ENTRIES:
+        result = subprocess.run(
+            f'sass "{entry}" "{out}" --no-source-map --style=compressed',
+            capture_output=True, text=True, shell=True
+        )
+        if result.returncode != 0:
+            print(f'SCSS error ({entry.name}):\n{result.stderr}', file=sys.stderr)
+            return False
     print('  ✓ SCSS compiled')
     return True
 
