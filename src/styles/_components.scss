@@ -340,15 +340,28 @@ html, body {
   white-space: pre;
   overflow: auto;
 
-  &__str    { color: v.$syn-string; }
-  &__num    { color: v.$syn-number; }
-  &__bool   { color: v.$syn-bool; }
-  &__null   { color: v.$syn-null; }
-  &__key    { color: v.$syn-key; }
-  &__brace  { color: v.$syn-brace; }
-  &__colon  { color: v.$syn-brace; }
-  &__toggle { color: v.$syn-toggle; cursor: pointer; user-select: none; margin-right: 2px; }
+  &__str    { color: var(--syn-string); }
+  &__num    { color: var(--syn-number); }
+  &__bool   { color: var(--syn-bool); }
+  &__null   { color: var(--syn-null); }
+  &__key    { color: var(--syn-key); }
+  &__brace  { color: var(--syn-brace); }
+  &__colon  { color: var(--syn-brace); }
+  &__toggle { color: var(--syn-toggle); cursor: pointer; user-select: none; margin-right: 2px; }
   &__block  { margin-left: 16px; display: block; }
+
+  &__entry {
+    border-radius: 3px;
+    transition: background 0.12s ease, box-shadow 0.12s ease;
+  }
+
+  // Only the innermost hovered entry gets the highlight so nested nodes
+  // don't all light up at once — keeps the active line visually unambiguous.
+  &__entry:hover:not(:has(&__entry:hover)) {
+    background: var(--bg-row-hover);
+    box-shadow: inset 2px 0 0 var(--row-accent);
+    cursor: pointer;
+  }
 
   &__copy-btn {
     opacity: 0;
@@ -361,10 +374,18 @@ html, body {
     padding: 0 3px;
     margin-left: 4px;
     vertical-align: middle;
-    transition: opacity 0.1s;
+    transition: opacity 0.1s, color 0.1s, border-color 0.1s;
   }
 
-  &__entry:hover &__copy-btn { opacity: 1; }
+  &__entry:hover:not(:has(&__entry:hover)) &__copy-btn {
+    opacity: 1;
+    color: var(--text-accent);
+  }
+
+  &__copy-btn:hover {
+    border-color: var(--text-accent);
+    color: var(--text-accent);
+  }
 }
 
 // ── IndexedDB store list ──────────────────────────────────────────────────────

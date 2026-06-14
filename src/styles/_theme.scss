@@ -2,33 +2,46 @@
 // Applied via [data-theme="dark"] / [data-theme="light"] on <body>.
 
 :root, [data-theme="dark"] {
-  --bg-primary:    #1e2127;
-  --bg-secondary:  #21252b;
-  --bg-row:        #282c34;
-  --bg-row-hover:  #2c313a;
-  --bg-row-sel:    #3e4451;
-  --bg-toolbar:    #21252b;
-  --bg-editor:     #1e2127;
+  // Tokyo Night-inspired modern dark palette
+  --bg-primary:    #16181f;
+  --bg-secondary:  #1a1c25;
+  --bg-row:        #1f2230;
+  --bg-row-hover:  #272b3d;
+  --bg-row-sel:    #364978;
+  --bg-toolbar:    #1a1c25;
+  --bg-editor:     #161821;
 
-  --border:        #3e4451;
-  --border-subtle: #2c313a;
+  --border:        #2d3147;
+  --border-subtle: #24283b;
 
-  --text-primary:  #abb2bf;
-  --text-secondary:#6b7280;
-  --text-key:      #e5c07b;
-  --text-danger:   #e06c75;
-  --text-success:  #98c379;
-  --text-accent:   #61afef;
+  --text-primary:  #c0caf5;
+  --text-secondary:#7a82a8;
+  --text-key:      #e0af68;
+  --text-danger:   #f7768e;
+  --text-success:  #9ece6a;
+  --text-accent:   #7aa2f7;
 
-  --badge-object:  #3a3f4b;
-  --badge-array:   #3a3f4b;
-  --badge-string:  #2d3b2d;
-  --badge-number:  #3b3020;
-  --badge-boolean: #1e3030;
-  --badge-null:    #3b1e1e;
+  --badge-object:  #2a2f47;
+  --badge-array:   #2a2f47;
+  --badge-string:  #1f2e2a;
+  --badge-number:  #2f2820;
+  --badge-boolean: #1e2942;
+  --badge-null:    #321f2c;
 
-  --scrollbar-thumb: #3e4451;
-  --scrollbar-track: #21252b;
+  --scrollbar-thumb: #2d3147;
+  --scrollbar-track: #1a1c25;
+
+  // Syntax — vibrant Tokyo Night accents
+  --syn-string: #9ece6a;
+  --syn-number: #ff9e64;
+  --syn-bool:   #7dcfff;
+  --syn-null:   #f7768e;
+  --syn-key:    #e0af68;
+  --syn-brace:  #7a82a8;
+  --syn-toggle: #7aa2f7;
+
+  // Row hover accent edge
+  --row-accent: #7aa2f7;
 }
 
 [data-theme="light"] {
@@ -59,4 +72,15 @@
 
   --scrollbar-thumb: #c1c7cd;
   --scrollbar-track: #f0f0f0;
+
+  // Syntax — keep existing One Dark-derived palette (user reported good on light)
+  --syn-string: #98c379;
+  --syn-number: #d19a66;
+  --syn-bool:   #56b6c2;
+  --syn-null:   #e06c75;
+  --syn-key:    #e5c07b;
+  --syn-brace:  #abb2bf;
+  --syn-toggle: #61afef;
+
+  --row-accent: #0366d6;
 }
